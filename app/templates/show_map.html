@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block javascript %}
+    <script src="/js/gmap/core.js" type="text/javascript"></script> 
+    <script src="/js/gmap/formutils.js" type="text/javascript"></script> 
+    <script type="text/javascript">
+    //<![CDATA[
+    window.onload   = init_maps;
+    window.onunload = GUnload;
+
+    function init_maps() {
+      if(GBrowserIsCompatible()) {
+        new GoogleMap('map{{ map.id }}', '/xml/{{ map.id }}');
+      }
+    }
+    //]]>
+    </script>
+{% endblock %}
+
+{% block content_body %}
+{% include "parts/map.html" with context %}
+{% endblock %}

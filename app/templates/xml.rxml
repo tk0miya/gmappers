@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<GMapConfig> 
+  <Option enableDoubleClickZoom="true"/> 
+  <Option enableContinuousZoom="true"/> 
+  <Option useGKeyboardHandler="true"/> 
+ 
+  <Controls> 
+    <Control name="GSmallMapControl"/> 
+    <Control name="GMapTypeControl"/> 
+  </Controls> 
+  
+  {% if not maps %}
+    <Option lat="35.52796" lng="139.35625" zoom="10"/> 
+  {% else %}
+    <Option autoCentering="true"/> 
+
+    {% for map in maps %}
+      {% for maker in map.markers %}
+        <Overlay id="{{ marker.id }}" type="marker">
+          <GLatLng lat="{{ marker.geopt.lat }}" lng="{{ marker.geopt.lon }}" />
+          <Text>{{ marker.text }}</Text>
+        </Overlay>
+      {% endfor %}
+
+      {% for polyline in map.polylines %}
+        <Overlay id="{{ polyline.id }}" type="encoded_polyline" points="{{ polyline.points }}" levels="{{ polyline.levels }}" color="{{ polyline.color }}" />
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+</GMapConfig> 

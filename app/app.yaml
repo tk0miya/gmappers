@@ -6,5 +6,13 @@ handlers:
 - url: /remote_api
   script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
   login: admin
+- url: /favicon.ico
+  static_dir: image
+- url: /img
+  static_dir: img
+- url: /js
+  static_dir: js
+- url: /css
+  static_dir: css
 - url: .*
   script: main.py

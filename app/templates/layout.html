@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="道背?b ?E事情?A ッHッVト 開通 ドラめAブ" />
+    <title>{% block title %}{% endblock %}GMappers! have fun with Google Map!</title>
+    <link href="/css/style.css" media="screen" rel="stylesheet" type="text/css" /> 
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss" />
+    <!--
+    <script src="http://maps.google.com/maps?file=api&v=2.73&key=ABQIAAAASH-PWXJDalCiynGXOAga6BTc7Dug7_44qRm7yAN83pI9KXijgxSF1EgF11_vZuIk4GqCZZcMLHNwkQ" type="text/javascript"></script> 
+      -->
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA4eql-YSnJdjJAh3TCsXYpRSVxpMzLo2MSr9OjI8XKMaS10WqSxRWW3eDU1q5dOIChUjN1E5L8yBE7w" type="text/javascript"></script>
+    {% block javascript %}{% endblock %}
+  </head>
+  <body {% block body_options %}{% endblock %}>
+    {% block menu %}
+    <div><a href="/"><img alt="GMappers! have fun with Google Map" class="logo" src="/img/logo.png" /></a></div> 
+    <%= menu_tag @menu_opts || params[:action] %>
+    <hr />
+    {% endblock %}
+
+    {% block content_body %}{% endblock %}
+
+    <hr />
+    <div style="text-align: right">
+      Copyright 2010
+      <a href="mailto:webmasters@monochrome.jp">gmappers</a>,
+      All rights reserved.
+    </div>
+  </body>
+</html>
