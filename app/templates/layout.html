@@ -7,18 +7,17 @@
     <meta name="keywords" content="道背?b ?E事情?A ッHッVト 開通 ドラめAブ" />
     <title>{% block title %}{% endblock %}GMappers! have fun with Google Map!</title>
     <link href="/css/style.css" media="screen" rel="stylesheet" type="text/css" /> 
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss" />
     <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key={{ apikey }}" type="text/javascript"></script>
     {% block javascript %}{% endblock %}
   </head>
   <body {% block body_options %}{% endblock %}>
     {% block menu %}
-    <div><a href="/"><img alt="GMappers! have fun with Google Map" class="logo" src="/img/logo.png" /></a></div> 
-    [<a href="/">Top</a>]
-    [<a href="/whats">What's GMappers!</a>]
-    [<a href="/list_tags">Tag list</a>]
-    [<a href="/list?mode=smart">Map list</a>]
-    [<a href="/map_editor/new">Add new map</a>]
+    <div><a href="{{ url_for("index") }}"><img alt="GMappers! have fun with Google Map" class="logo" src="/img/logo.png" /></a></div> 
+    [<a href="{{ url_for("index") }}">Top</a>]
+    [<a href="{{ url_for("whats") }}">What's GMappers!</a>]
+    [<a href="{{ url_for("list_tags") }}">Tag list</a>]
+    [<a href="{{ url_for("list", mode="smart") }}">Map list</a>]
+    [<a href="map_editor/new">Add new map</a>]
     <hr />
     {% endblock %}
 

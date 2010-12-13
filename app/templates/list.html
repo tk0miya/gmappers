@@ -32,10 +32,10 @@
 
     <div class="pagelist">
       {% if page > 0 %}
-      <a href="/list?page={{ page - 1 }}&mode={{ mode }}">prev</a>
+      <a href="{{ url_for("list", page=page-1, mode=mode) }}">prev</a>
       {% endif %}
       {% if nextpage %}
-      <a href="/list?page={{ page + 1 }}&mode={{ mode }}">next</a>
+      <a href="{{ url_for("list", page=page+1, mode=mode) }}">next</a>
       {% endif %}
     </div>
 {% endblock %}

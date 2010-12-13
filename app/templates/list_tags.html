@@ -3,9 +3,9 @@
     <div class="title">Tags:</div>
     <ul>
     {% for tag in tags %}
-    <li><a href="/list/{{ tag }}">{{ tag }}</a>
+    <li><a href="{{ url_for("list", tag=tag) }}">{{ tag }}</a>
         ({{ tags[tag] }})
-        [<a href="/show_large_map/{{ tag }}" target="_blank">Tag Map</a>]
+        [<a href="{{ url_for("show_large_map", key=tag) }}" target="_blank">Tag Map</a>]
     {% endfor %}
     </ul>
 {% endblock %}
