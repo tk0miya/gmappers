@@ -118,20 +118,23 @@ def xml(map_id):
 
 @app.route('/list_tags')
 def list_tags():
-    tags = {}
+    kwargs = get_template_hash()
+
+    kwargs['tags'] = {}
     for map in Map.all().fetch(1000):
         for tag in map.tag:
-            if tag not in tags:
-                tags[tag] = 0
+            if tag not in kwargs['tags']:
+                kwargs['tags'][tag] = 0
 
-            tags[tag] += 1
+            kwargs['tags'][tag] += 1
 
-    return render_template('list_tags.html', tags=tags)
+    return render_template('list_tags.html', **kwargs)
 
 
 @app.route('/whats')
 def whats():
-    return render_template('whats.html')
+    kwargs = get_template_hash()
+    return render_template('whats.html', **kwargs)
 
 
 @app.route('/sitemap')
