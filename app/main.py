@@ -25,11 +25,7 @@ def get_template_hash():
     if os.environ.get('SERVER_SOFTWARE', '').startswith('Development'):
         hash['apikey'] = 'ABQIAAAA4eql-YSnJdjJAh3TCsXYpRSVxpMzLo2MSr9OjI8XKMaS10WqSxRWW3eDU1q5dOIChUjN1E5L8yBE7w'
     else:
-        # key for gmappers.monochrome.jp
-        #hash['apikey'] = 'ABQIAAAASH-PWXJDalCiynGXOAga6BTc7Dug7_44qRm7yAN83pI9KXijgxSF1EgF11_vZuIk4GqCZZcMLHNwkQ'
-
-        # key for gmappers.appspot.com
-        hash['apikey'] = 'ABQIAAAA4eql-YSnJdjJAh3TCsXYpRSi_LOrAfVfZzZD9uZ9lzLXDed67hSC4VCxi2OQNI9Ty_NhclzJ3Jdpfw'
+        hash['apikey'] = 'ABQIAAAA4eql-YSnJdjJAh3TCsXYpRRR9AoLurGn_kUWBA25ULkbtiDzeBRJDlCReyu5iCefzVeyJN4Fj0Jiow'
 
     return hash
 
