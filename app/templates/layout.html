@@ -8,10 +8,7 @@
     <title>{% block title %}{% endblock %}GMappers! have fun with Google Map!</title>
     <link href="/css/style.css" media="screen" rel="stylesheet" type="text/css" /> 
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss" />
-    <!--
-    <script src="http://maps.google.com/maps?file=api&v=2.73&key=ABQIAAAASH-PWXJDalCiynGXOAga6BTc7Dug7_44qRm7yAN83pI9KXijgxSF1EgF11_vZuIk4GqCZZcMLHNwkQ" type="text/javascript"></script> 
-      -->
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA4eql-YSnJdjJAh3TCsXYpRSVxpMzLo2MSr9OjI8XKMaS10WqSxRWW3eDU1q5dOIChUjN1E5L8yBE7w" type="text/javascript"></script>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key={{ apikey }}" type="text/javascript"></script>
     {% block javascript %}{% endblock %}
   </head>
   <body {% block body_options %}{% endblock %}>
