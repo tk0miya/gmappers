@@ -56,5 +56,10 @@ def xml(map_id):
     return resp
 
 
+@app.route('/whats')
+def whats():
+    return render_template('whats.html')
+
+
 if __name__ == '__main__':
     run_wsgi_app(app)
