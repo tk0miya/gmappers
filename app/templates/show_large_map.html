@@ -32,6 +32,11 @@
     </script>
     {% endif %}
 {% endblock %}
+
+{% block title %}
+{% if map %}{{ map.name }} - {% elif tag %}{{ tag }} - {% endif %}
+{% endblock %}
+
 {% block body_options %}class="noscroll"{% endblock %}
 {% block menu %}{% endblock %}
 

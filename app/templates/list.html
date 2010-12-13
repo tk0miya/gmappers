@@ -22,6 +22,10 @@
     {% endif %}
 {% endblock %}
 
+{% block title %}
+{% if tag %}{{ tag }} - {% endif %}
+{% endblock %}
+
 {% block content_body %}
 {% for map in maps %}
 {% include "parts/map.html" with context %}
