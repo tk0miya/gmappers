@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
+  <url>
+    <loc>http://gmappers.monochrome.jp/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  {% for map in maps %}
+  <url>
+    <loc>http://gmappers.monochrome.jp/show_map/{{ map.id }}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <lastmod>{{ map.lastmod }}</lastmod>
+  </url>
+  {% endfor %}
+</urlset>

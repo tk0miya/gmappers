@@ -4,6 +4,7 @@ import sys
 sys.path.insert(0, './distlib.zip')
 
 import re
+import datetime
 from google.appengine.ext.webapp.util import run_wsgi_app
 from models import Map, Marker, Polyline
 from flask import Flask, request, render_template
@@ -103,6 +104,16 @@ def list_tags():
 @app.route('/whats')
 def whats():
     return render_template('whats.html')
+
+
+@app.route('/sitemap')
+def sitemap():
+    maps = Map.all().order('-id').fetch(1000)
+    for map in maps:
+        map.lastmod = datetime.datetime.now().isoformat()
+
+    return render_template('sitemap.xml', maps=maps)
+
 
 
 if __name__ == '__main__':
