@@ -28,6 +28,9 @@ def show_large_map(key):
     if re.search('^\d+$', key):
         map = Map.all().filter("id =", int(key)).get()
         return render_template('show_large_map.html', map=map)
+    elif re.search('^(\d+,)*\d+$', key):
+        map_id_list = ",".join(str(x) for x in key.split(','))
+        return render_template('show_large_map.html', map_id_list=map_id_list)
     else:
         map = Map.all().filter("tag =", key).fetch(1000)
         map_id_list = ",".join(str(x.id) for x in map)
