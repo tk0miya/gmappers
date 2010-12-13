@@ -49,7 +49,7 @@ def xml(map_id):
         map.polylines = Polyline.all().filter("map =", map).fetch(1000)
         map.markers = Marker.all().filter("map =", map).fetch(1000)
 
-    xml = render_template('xml.rxml', maps=maps)
+    xml = render_template('map.xml', maps=maps)
 
     resp = app.make_response(xml)
     resp.headers['Content-Type'] = 'application/xml; charset=UTF-8'
