@@ -25,15 +25,17 @@
 {% block content_body %}
 {% for map in maps %}
 {% include "parts/map.html" with context %}
+{% if not loop.last %}
 <hr width="95%" />
+{% endif %}
 {% endfor %}
+
     <div class="pagelist">
-      <% if(@pages.current.previous) %>
-        <%= link_to :prev, {:page => @pages.current.previous, :mode => @mode} %>
-      <% end %>
-      <%= pagination_links @pages, :params => {:mode => @mode} %>
-      <% if(@pages.current.next) %>
-        <%= link_to :next, {:page => @pages.current.next, :mode => @mode} %>
-      <% end %>
+      {% if page > 0 %}
+      <a href="/list?page={{ page - 1 }}&mode={{ mode }}">prev</a>
+      {% endif %}
+      {% if nextpage %}
+      <a href="/list?page={{ page + 1 }}&mode={{ mode }}">next</a>
+      {% endif %}
     </div>
 {% endblock %}

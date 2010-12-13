@@ -8,25 +8,44 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from models import Map, Marker, Polyline
 from flask import Flask, request, render_template
 
+PAGESIZE=10
+
 app = Flask(__name__)
 app.debug = True
 
 
 @app.route('/')
 def index():
-    return 'hello world'
+    page = int(request.args.get('page', 0))
+
+    maps = Map.all().order('-id').fetch(PAGESIZE + 1, page * PAGESIZE)
+    if len(maps) == PAGESIZE + 1:
+        maps = maps[:PAGESIZE]
+        nextpage = True
+    else:
+        nextpage = False
+
+    return render_template('list.html', maps=maps, page=page, nextpage=nextpage)
 
 
 @app.route('/list')
 @app.route('/list/<tag>')
 def list(tag=None):
     mode = request.args.get('mode')
-    if tag:
-        maps = Map.all().filter("tag =", tag).fetch(1000)
-    else:
-        maps = Map.all().fetch(1000)
+    page = int(request.args.get('page', 0))
 
-    return render_template('list.html', maps=maps, mode=mode)
+    query = Map.all().order('-id')
+    if tag:
+        query = query.filter("tag =", tag)
+
+    maps = query.fetch(PAGESIZE + 1, page * PAGESIZE)
+    if len(maps) == PAGESIZE + 1:
+        maps = maps[:PAGESIZE]
+        nextpage = True
+    else:
+        nextpage = False
+
+    return render_template('list.html', maps=maps, page=page, nextpage=nextpage, mode=mode)
 
 
 @app.route('/show_map/<int:map_id>')
