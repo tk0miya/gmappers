@@ -56,6 +56,19 @@ def xml(map_id):
     return resp
 
 
+@app.route('/list_tags')
+def list_tags():
+    tags = {}
+    for map in Map.all().fetch(1000):
+        for tag in map.tag:
+            if tag not in tags:
+                tags[tag] = 0
+
+            tags[tag] += 1
+
+    return render_template('list_tags.html', tags=tags)
+
+
 @app.route('/whats')
 def whats():
     return render_template('whats.html')
