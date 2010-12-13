@@ -11,7 +11,7 @@
     <loc>http://gmappers.monochrome.jp/show_map/{{ map.id }}</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <lastmod>{{ map.lastmod }}</lastmod>
+    <lastmod>{{ map.updated_at.isoformat() }}</lastmod>
   </url>
   {% endfor %}
 </urlset>
