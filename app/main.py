@@ -9,11 +9,14 @@ import datetime
 from google.appengine.ext.webapp.util import run_wsgi_app
 from models import Map, Marker, Polyline
 from flask import Flask, request, render_template
+import myfilters
+
 
 PAGESIZE=10
 
 app = Flask(__name__)
 app.debug = True
+myfilters.install(app)
 
 
 def get_template_hash():
