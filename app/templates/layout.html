@@ -17,7 +17,11 @@
   <body {% block body_options %}{% endblock %}>
     {% block menu %}
     <div><a href="/"><img alt="GMappers! have fun with Google Map" class="logo" src="/img/logo.png" /></a></div> 
-    <%= menu_tag @menu_opts || params[:action] %>
+    [<a href="/">Top</a>]
+    [<a href="/whats">What's GMappers!</a>]
+    [<a href="/list_tags">Tag list</a>]
+    [<a href="/list?mode=smart">Map list</a>]
+    [<a href="/map_editor/new">Add new map</a>]
     <hr />
     {% endblock %}
 
