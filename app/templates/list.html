@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block javascript %}
+    {% if mode != 'smart' %}
+    <script src="/js/gmap/core.js" type="text/javascript"></script> 
+    <script src="/js/gmap/formutils.js" type="text/javascript"></script> 
+
+    <!-- script for standard map -->
+    <script type="text/javascript">
+    //<![CDATA[
+    window.onload   = init_maps;
+    window.onunload = GUnload;
+
+    function init_maps() {
+      if(GBrowserIsCompatible()) {
+        {% for map in maps %}
+        new GoogleMap('map{{ map.id }}', '/xml/{{ map.id }}');
+        {% endfor %}
+      }
+    }
+    //]]>
+    </script>
+    {% endif %}
+{% endblock %}
+
+{% block content_body %}
+{% for map in maps %}
+{% include "parts/map.html" with context %}
+<hr width="95%" />
+{% endfor %}
+    <div class="pagelist">
+      <% if(@pages.current.previous) %>
+        <%= link_to :prev, {:page => @pages.current.previous, :mode => @mode} %>
+      <% end %>
+      <%= pagination_links @pages, :params => {:mode => @mode} %>
+      <% if(@pages.current.next) %>
+        <%= link_to :next, {:page => @pages.current.next, :mode => @mode} %>
+      <% end %>
+    </div>
+{% endblock %}

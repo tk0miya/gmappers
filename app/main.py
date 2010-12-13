@@ -6,7 +6,7 @@ sys.path.insert(0, './distlib.zip')
 import re
 from google.appengine.ext.webapp.util import run_wsgi_app
 from models import Map, Marker, Polyline
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 app.debug = True
@@ -15,6 +15,18 @@ app.debug = True
 @app.route('/')
 def index():
     return 'hello world'
+
+
+@app.route('/list')
+@app.route('/list/<tag>')
+def list(tag=None):
+    mode = request.args.get('mode')
+    if tag:
+        maps = Map.all().filter("tag =", tag).fetch(1000)
+    else:
+        maps = Map.all().fetch(1000)
+
+    return render_template('list.html', maps=maps, mode=mode)
 
 
 @app.route('/show_map/<int:map_id>')
