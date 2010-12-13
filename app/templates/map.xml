@@ -18,7 +18,7 @@
       {% for marker in map.markers %}
         <Overlay id="{{ marker.id }}" type="marker">
           <GLatLng lat="{{ marker.geopt.lat }}" lng="{{ marker.geopt.lon }}" />
-          <Text>{{ marker.text }}</Text>
+          <Text>{{ marker.label }}</Text>
         </Overlay>
       {% endfor %}
 
