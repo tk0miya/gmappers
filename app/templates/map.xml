@@ -15,7 +15,7 @@
     <Option autoCentering="true"/> 
 
     {% for map in maps %}
-      {% for maker in map.markers %}
+      {% for marker in map.markers %}
         <Overlay id="{{ marker.id }}" type="marker">
           <GLatLng lat="{{ marker.geopt.lat }}" lng="{{ marker.geopt.lon }}" />
           <Text>{{ marker.text }}</Text>
