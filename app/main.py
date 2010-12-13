@@ -107,6 +107,7 @@ def whats():
 
 
 @app.route('/sitemap')
+@app.route('/sitemap.xml')
 def sitemap():
     maps = Map.all().order('-id').fetch(1000)
     for map in maps:
