@@ -13,7 +13,7 @@ from flask import Flask, request, render_template
 import myfilters
 
 
-PAGESIZE=10
+PAGESIZE = 10
 
 app = Flask(__name__)
 app.debug = True
@@ -24,9 +24,11 @@ def get_template_hash():
     hash = {}
 
     if os.environ.get('SERVER_SOFTWARE', '').startswith('Development'):
-        hash['apikey'] = 'ABQIAAAA4eql-YSnJdjJAh3TCsXYpRSVxpMzLo2MSr9OjI8XKMaS10WqSxRWW3eDU1q5dOIChUjN1E5L8yBE7w'
+        hash['apikey'] = 'ABQIAAAA4eql-YSnJdjJAh3TCsXYpRSVxpMzLo2MSr9Oj' + \
+                         'I8XKMaS10WqSxRWW3eDU1q5dOIChUjN1E5L8yBE7w'
     else:
-        hash['apikey'] = 'ABQIAAAA4eql-YSnJdjJAh3TCsXYpRRR9AoLurGn_kUWBA25ULkbtiDzeBRJDlCReyu5iCefzVeyJN4Fj0Jiow'
+        hash['apikey'] = 'ABQIAAAA4eql-YSnJdjJAh3TCsXYpRRR9AoLurGn_kUWB' + \
+                         'A25ULkbtiDzeBRJDlCReyu5iCefzVeyJN4Fj0Jiow'
 
     return hash
 
@@ -139,7 +141,6 @@ def whats():
 def sitemap():
     maps = Map.all().order('-id').fetch(1000)
     return render_template('sitemap.xml', maps=maps)
-
 
 
 if __name__ == '__main__':
