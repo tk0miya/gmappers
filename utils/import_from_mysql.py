@@ -90,6 +90,18 @@ def polylines_for(cn, map):
     return polylines
 
 
+def delete_all(model):
+    count = model.all().count()
+    print "deleting %s ... (%d)" % (model.__name__, count)
+
+    for o in model.all().fetch(1000):
+        o.delete()
+
+    count = model.all().count()
+    if count > 0:
+        delete_all(model)
+
+
 def main():
     config = Pit.get('gmappers', {'require': {'host': 'localhost',
                                               'user': 'gmappers',
@@ -97,6 +109,11 @@ def main():
                                               'db': 'gmappers'}})
     cn = _mysql.connect(config['host'], config['user'],
                         config['passwd'], config['db'])
+
+    delete_all(models.Tag)
+    delete_all(models.Map)
+    delete_all(models.Marker)
+    delete_all(models.Polyline)
 
     for tag in alltags(cn):
         tag.put()
