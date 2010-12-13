@@ -6,6 +6,7 @@ import _mysql
 from pit import Pit
 
 import models
+from dateutil import parser
 from google.appengine.ext import db
 
 
@@ -14,6 +15,17 @@ def decode(string):
         return unicode(string, 'utf-8')
     else:
         return string
+
+def alltags(cn):
+    cn.query('SELECT * FROM tags')
+    tag_rs = cn.store_result()
+    for i in range(tag_rs.num_rows()):
+        r = tag_rs.fetch_row()[0]
+
+        tag = models.Tag(name=decode(r[1]),
+                         type_id=int(r[2]),
+                         order_id=int(r[3]))
+        yield tag
 
 def allmaps(cn):
     cn.query('SELECT * FROM maps')
@@ -25,7 +37,9 @@ def allmaps(cn):
                          name=decode(r[1]),
                          author=re.sub('[\r\n]', '', decode(r[2])),
                          description=decode(r[3]),
-                         edit_key=r[4])
+                         edit_key=r[4],
+                         created_at=parser.parse(r[6]),
+                         updated_at=parser.parse(r[7]))
         tags_for(cn, map)
 
         yield map
@@ -83,6 +97,9 @@ def main():
                                               'db': 'gmappers'}})
     cn = _mysql.connect(config['host'], config['user'],
                         config['passwd'], config['db'])
+
+    for tag in alltags(cn):
+        tag.put()
 
     for map in allmaps(cn):
         map.put()
